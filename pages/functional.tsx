@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import AppContext from '../components/AppContext';
 
 const Functional = () => {
-  const { user, setDefault } = useContext(AppContext);
+  const { user, setDefault, setName } = useContext(AppContext);
 
-  console.log('test user:', user);
+  const [input, setInput] = useState('');
 
   return (
     <div>
@@ -18,6 +18,9 @@ const Functional = () => {
         </div>
       ))}
 
+      <input type='input' value={input} onChange={(e) => setInput(e.target.value)} />
+
+      <button onClick={() => setName(input)}>change name</button>
       <button onClick={setDefault}>default</button>
     </div>
   );

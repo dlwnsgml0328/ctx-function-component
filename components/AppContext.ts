@@ -7,8 +7,7 @@ const AppContext = createContext({
     hobbies: ['learning'],
   },
   setDefault: () => {},
+  setName: (name: string) => {},
 });
 
 export default AppContext;
-
-// user의 초기값은 어떻게 설정할 수 있을까요?

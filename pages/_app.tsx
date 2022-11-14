@@ -12,11 +12,19 @@ function MyApp({ Component, pageProps }: AppProps) {
     setCtxUser({ name: 'junhee lee', age: 26, hobbies: ['works out'] });
   }, []);
 
+  const changeName = useCallback(
+    (name: string) => {
+      setCtxUser({ ...ctxUser, name: name });
+    },
+    [ctxUser]
+  );
+
   return (
     <AppContext.Provider
       value={{
         user: ctxUser,
         setDefault: defaultSetting,
+        setName: changeName,
       }}
     >
       <Component {...pageProps} />

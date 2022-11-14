@@ -4,7 +4,7 @@ import AppContext from '../components/AppContext';
 const Functional = () => {
   const { user, setDefault } = useContext(AppContext);
 
-  console.log('user:', user);
+  console.log('test user:', user);
 
   return (
     <div>

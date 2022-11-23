@@ -1,41 +1,39 @@
-import React from 'react';
-import AppContext from '../components/AppContext';
+import React, { useState } from 'react';
+import { useUser } from '../context/UserContext';
 
-const Home = () => {
+const Immsi = () => {
+  const { user, logInfo, setName, defaultUserInfo } = useUser();
+
+  const [input, setInput] = useState('');
+
   return (
-    <AppContext.Consumer>
-      {({ user, setDefault }) => (
-        <div>
-          <div>
-            <h1>Keys</h1>
-            {Object.keys(user).map((item, idx) => (
-              <div key={idx}>{item}</div>
-            ))}
-          </div>
+    <div>
+      <h1>Hello User!</h1>
 
-          <div>
-            <h1>Values</h1>
-            {Object.values(user).map((item, idx) => (
-              <div key={idx}>{item}</div>
-            ))}
-          </div>
-
-          <div>
-            <h1>Entries</h1>
-            {Object.entries(user).map(([key, value], idx) => (
-              <div key={idx}>
-                <span>{key}</span>-<span>{value}</span>
-              </div>
-            ))}
-          </div>
-
-          <button type='button' onClick={setDefault}>
-            set Default
-          </button>
+      {Object.entries(user).map(([key, value], idx) => (
+        <div key={idx}>
+          <span>{key}</span> - <span>{value}</span>
         </div>
-      )}
-    </AppContext.Consumer>
+      ))}
+
+      <hr />
+
+      <button type='button' onClick={logInfo}>
+        info
+      </button>
+
+      <hr />
+
+      <input type='text' value={input} onChange={(e) => setInput(e.target.value)} />
+      <button type='button' onClick={() => setName(input)}>
+        change the name
+      </button>
+
+      <button type='button' onClick={defaultUserInfo}>
+        make default user info
+      </button>
+    </div>
   );
 };
 
-export default Home;
+export default Immsi;
